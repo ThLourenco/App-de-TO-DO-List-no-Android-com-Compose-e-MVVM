@@ -8,8 +8,18 @@ class TodoRepositoryImpl(
     private val dao: TodoDao
 ): TodoRepository {
     //implementar os membors
-    override suspend fun insert(title: String, description: String) {
-        val entity = TodoEntity(title = title, descripition = description, isCompleted = false)
+    override suspend fun insert(title: String, description: String?, id: Long?) {
+        val entity = id?.let { //verifico de ele noa ofr vazio
+            dao.getBy(it)?.copy(// usando um copy significa se ele retorna alguma coisa, quer dizer
+                //que nao esta nulo, entao nao precisa usar o let para verificar
+                    title = title,
+                    descripition = description
+            )
+        } ?: TodoEntity( //nova entidade para fazer o insert com id novo
+            title = title,
+            descripition = description,
+            isCompleted = false)
+
         dao.insert(entity)
     }
 
@@ -20,7 +30,7 @@ class TodoRepositoryImpl(
     }
 
     override suspend fun delete(id: Long) {
-        val existingTodo = dao.getBy(id)?: return
+        val existingTodo = dao.getBy(id) ?: return
         dao.delete(existingTodo)
     }
 

@@ -8,7 +8,7 @@ import com.example.todo_list.domain.Todo
 import kotlinx.coroutines.flow.Flow
 
 interface TodoRepository {
-    suspend fun insert(title: String, description: String)
+    suspend fun insert(title: String, description: String?, id:  Long? = null)
 
     suspend fun updataCompletd(id: Long, iscompleted: Boolean)
 
