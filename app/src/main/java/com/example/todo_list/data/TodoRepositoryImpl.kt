@@ -22,10 +22,15 @@ class TodoRepositoryImpl(
 
         dao.insert(entity)
     }
-
+    // Função usada para atualizar apenas o status "isCompleted" de uma tarefa (ex: checkbox).
+    // Primeiro buscamos a tarefa existente no banco pelo ID.
+    // Se existir, usamos .copy() para manter todos os dados e mudar apenas o campo isCompleted.
+    // Depois inserimos novamente — como Room já conhece o ID, isso funciona como um update.
+    // Isso é útil em telas onde o usuário marca uma tarefa como feita (ou desfaz).
+    //Esse método existe pra casos específicos, tipo atualizar só o status de completado (checkbox) sem alterar o resto.
     override suspend fun updataCompletd(id: Long, iscompleted: Boolean) {
-       val existingTodo = dao.getBy(id) ?: return
-        val updateEntity = existingTodo.copy(isCompleted = iscompleted)
+       val existingTodo = dao.getBy(id) ?: return //Se não encontrar, ele retorna e não faz nada (?: return).
+        val updateEntity = existingTodo.copy(isCompleted = iscompleted) //e encontrar, ele faz um .copy() pra alterar apenas o campo isCompleted.
         dao.insert(updateEntity)
     }
 

@@ -7,7 +7,8 @@ import androidx.room.PrimaryKey
 data class TodoEntity(
     // é sempre bom ter base de dados em cada camada para reprensentar os dados daquela camada
 
-    @PrimaryKey(autoGenerate = true) val id: Long = 0,
+    @PrimaryKey(autoGenerate = true)
+    val id: Long = 0,
     val title: String,
     val descripition: String?,
     val isCompleted: Boolean

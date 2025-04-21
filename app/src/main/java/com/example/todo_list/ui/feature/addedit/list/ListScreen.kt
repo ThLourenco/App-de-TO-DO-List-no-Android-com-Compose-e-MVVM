@@ -106,6 +106,13 @@ fun ListContent(//modifier: Modifier = Modifier
     todos: List<Todo>,
     onEvent: (ListEvent) -> Unit,
     ) {
+    //// Scaffold é um layout de estrutura que ajuda a organizar os elementos principais da tela.
+    //// Ele fornece slots (espaços) prontos para:
+    //// - barra superior (topBar)
+    //// - botão flutuante (floatingActionButton)
+    //// - menu lateral (drawerContent)
+    //// - conteúdo principal (content)
+    //// Ele cuida do espaçamento automático entre os elementos.
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(onClick = {

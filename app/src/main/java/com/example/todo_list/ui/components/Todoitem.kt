@@ -27,7 +27,7 @@ import com.example.todo_list.domain.todo1
 import com.example.todo_list.domain.todo2
 import com.example.todo_list.ui.theme.TodolistTheme
 
-@Composable
+@Composable //Composable (exibe a UI)
 fun Todoitem(
     todo: Todo,
     //[funçoes lambda]
@@ -75,8 +75,7 @@ fun Todoitem(
     }
 }
 
-@Preview
-@Composable
+@Composable //Composable (exibe a UI)
 private fun TodoItemPreview(){
     TodolistTheme {
         Todoitem(
@@ -91,7 +90,7 @@ private fun TodoItemPreview(){
 
 
 @Preview
-@Composable
+@Composable //Composable (exibe a UI)
 private fun TodoItemCompletedPreview(){
     TodolistTheme {
         Todoitem(
